@@ -1,0 +1,46 @@
+/* Card grid layout */
+.archive--card-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 1.25rem;
+  margin: 1.5rem 0;
+}
+
+/* Individual card */
+.archive__item--card {
+  background: var(--global-bg-color, #fff);
+  border: 1px solid #e0e0e0;
+  border-radius: 10px;
+  padding: 1.2rem 1.4rem;
+  display: flex;
+  flex-direction: column;
+  transition: box-shadow 0.2s ease, transform 0.2s ease;
+  height: 100%;
+}
+
+.archive__item--card:hover {
+  box-shadow: 0 4px 16px rgba(0,0,0,0.10);
+  transform: translateY(-2px);
+}
+
+.archive__item--card .archive__item-title {
+  font-size: 1rem;
+  font-weight: 600;
+  margin: 0 0 0.4rem;
+  line-height: 1.3;
+}
+
+.archive__item--card .archive__item-excerpt {
+  font-size: 0.85rem;
+  color: #666;
+  flex: 1;
+  margin: 0;
+}
+
+.archive__item--card .card__meta {
+  font-size: 0.78rem;
+  color: #888;
+  margin-top: 0.75rem;
+  border-top: 1px solid #eee;
+  padding-top: 0.6rem;
+}

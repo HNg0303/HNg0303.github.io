@@ -1,6 +1,6 @@
 ---
 permalink: /
-title: "Quang-Binh Nguyen"
+# title: "Quang-Binh Nguyen"
 author_profile: true
 redirect_from: 
   - /about/
@@ -11,9 +11,9 @@ redirect_from:
 
 # About Me
 
-I am a Research Resident at Qualcomm AI Research, advised by Dr. Khoi Nguyen. I obtained my Bachelor's Degree in Computer Science - Honors Program at University of Science, VNU-HCM, under the supervision of Prof. Minh-Triet Tran and Dr. Trung-Nghia Le.
+I am a third-year student of the APCS (Advanced Program In Computer Science) at University of Science, Vietnam National University Ho Chi Minh City. I am currently an Undergraduate Researcher under the direct supervision of [Dr. Trung-Nghia Le](https://ltnghia.github.io/).
 
-My research focuses on controllable image generation, particularly image personalization (diffusion and autoregressive models). Recently, I have been working on test-time alignment for generative models.
+My research focuses on VLMs in cross-modal retrieval and controllable image generation. 
 
 Feel free to reach out via [email](mailto:chnguyen032005@gmail.com) or [LinkedIn](https://www.linkedin.com/in/hoang-nguyen-cao/) if you'd like to connect!
 
@@ -24,10 +24,11 @@ Feel free to reach out via [email](mailto:chnguyen032005@gmail.com) or [LinkedIn
 {% if site.work_experience %}
 <div class="archive--card-grid">
   {% for post in site.work_experience reversed %}
-    {% include archive-single.html type="card" %}
+    {% include archive-single-card.html post=post %}
   {% endfor %}
 </div>
 {% endif %}
+
 
 ---
 
