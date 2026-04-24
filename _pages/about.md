@@ -37,7 +37,7 @@ Feel free to reach out via [email](mailto:chnguyen032005@gmail.com) or [LinkedIn
 {% if site.publications %}
 <div class="archive--card-grid">
   {% for post in site.publications reversed %}
-    {% include archive-single.html type="card" %}
+    {% include archive-single-card.html type="card" %}
   {% endfor %}
 </div>
 {% endif %}
@@ -49,7 +49,7 @@ Feel free to reach out via [email](mailto:chnguyen032005@gmail.com) or [LinkedIn
 {% if site.portfolio %}
 <div class="archive--card-grid">
   {% for post in site.portfolio reversed %}
-    {% include archive-single.html type="card" %}
+    {% include archive-single-card.html type="card" %}
   {% endfor %}
 </div>
 {% endif %}
@@ -61,14 +61,11 @@ Feel free to reach out via [email](mailto:chnguyen032005@gmail.com) or [LinkedIn
 {% if site.achievements %}
 <div class="archive--card-grid">
   {% for post in site.achievements reversed %}
-    {% include archive-single.html type="card" %}
+    {% include archive-single-card.html type="card" %}
   {% endfor %}
 </div>
 {% endif %}
  
-
-Example: editing a Markdown file for a talk
-![Editing a Markdown file for a talk](/images/editing-talk.png)
 
 For more info
 ------
