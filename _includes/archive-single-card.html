@@ -1,26 +1,58 @@
 {% assign post = include.post | default: post %}
-<div class="archive__item--card">
-  {% if post.teaser %}
-    <img src="{{ post.teaser | relative_url }}" alt="{{ post.title }}" style="border-radius:6px;margin-bottom:0.75rem;width:100%;object-fit:cover;max-height:140px;">
-  {% endif %}
-
-  <h3 class="archive__item-title">
-    {% if post.link %}
-      <a href="{{ post.link }}">{{ post.title }}</a>
+<a href="{{ post.url | relative_url }}" class="card-link-wrapper">
+  <article class="archive__item--hcard">
+    
+    {% if post.teaser %}
+      <div class="hcard__teaser">
+        <img src="{{ post.teaser | relative_url }}" alt="{{ post.title }}">
+      </div>
     {% else %}
-      <a href="{{ post.url | relative_url }}" rel="permalink">{{ post.title }}</a>
+      <div class="hcard__teaser hcard__teaser--placeholder">
+        <span>{{ post.title | slice: 0 }}</span>
+      </div>
     {% endif %}
-  </h3>
 
-  {% if post.excerpt %}
-    <p class="archive__item-excerpt">{{ post.excerpt | markdownify | strip_html | truncate: 120 }}</p>
-  {% endif %}
+    <div class="hcard__body">
+      <div class="hcard__meta-top">
+        {% if post.venue %}
+          <span class="hcard__venue">{{ post.venue }}</span>
+        {% endif %}
+        {% if post.date %}
+          <span class="hcard__year">{{ post.date | date: "%Y" }}</span>
+        {% endif %}
+        {% if post.company %}
+          <span class="hcard__venue">{{ post.company }}</span>
+        {% endif %}
+        {% if post.date_start %}
+          <span class="hcard__year">{{ post.date_start | date: "%b %Y" }}{% if post.date_end %} – {{ post.date_end | date: "%b %Y" }}{% endif %}</span>
+        {% endif %}
+        {% if post.rank %}
+          <span class="hcard__rank">{{ post.rank }}</span>
+        {% endif %}
+      </div>
 
-  <div class="card__meta">
-    {% if post.company %}{{ post.company }}{% endif %}
-    {% if post.date_start %} · {{ post.date_start | date: "%b %Y" }}{% endif %}
-    {% if post.date_end %} – {{ post.date_end | date: "%b %Y" }}{% endif %}
-    {% if post.location %} · {{ post.location }}{% endif %}
-    {% if post.venue %} · <em>{{ post.venue }}</em>{% endif %}
-  </div>
-</div>
+      <h3 class="hcard__title">{{ post.title }}</h3>
+
+      {% if post.excerpt %}
+        <p class="hcard__excerpt">{{ post.excerpt | markdownify | strip_html | truncate: 160 }}</p>
+      {% endif %}
+
+      <div class="hcard__actions" onclick="event.stopPropagation()">
+        {% if post.paperurl %}
+          <a href="{{ post.paperurl }}" target="_blank" class="hcard__btn hcard__btn--paper">Paper</a>
+        {% endif %}
+        {% if post.codeurl %}
+          <a href="{{ post.codeurl }}" target="_blank" class="hcard__btn hcard__btn--code">Code</a>
+        {% endif %}
+        {% if post.projecturl %}
+          <a href="{{ post.projecturl }}" target="_blank" class="hcard__btn hcard__btn--project">Project</a>
+        {% endif %}
+        {% if post.slidesurl %}
+          <a href="{{ post.slidesurl }}" target="_blank" class="hcard__btn">Slides</a>
+        {% endif %}
+        <span class="hcard__readmore">Read more →</span>
+      </div>
+    </div>
+
+  </article>
+</a>
