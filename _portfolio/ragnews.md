@@ -23,7 +23,7 @@ tags:
 
 **RAGNews** is a production-grade agentic news platform that ingests, indexes, and intelligently answers questions about news using a **Retrieval-Augmented Generation (RAG)** pipeline. The system uses a domain-fine-tuned LLM for summarization and a BERT-based classifier for sentiment analysis.
 
-![RAGNews Overview](/images/projects/RAGNews_HomePage.png)
+![RAGNews Overview](/images/projects/RAGNews_HomePage.PNG)
 
 ## Pipeline Architecture
 
@@ -60,7 +60,7 @@ Built on **FastAPI** + **LangChain**, the system routes user queries through dat
 
 ## System Architecture
 
-![RAGNews Pipeline Architecture](/images/projects/RAGNews_Diagram.png)
+![RAGNews Pipeline Architecture](/images/projects/RAGNews_Diagram.PNG)
 
 The two-stage retrieval pipeline:
 1. **Milvus Vector Search**: Fast approximate nearest-neighbor retrieval from indexed news corpus
