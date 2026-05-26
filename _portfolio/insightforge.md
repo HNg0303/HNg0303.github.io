@@ -5,7 +5,6 @@ permalink: /portfolio/insightforge/
 date: 2026-03-01
 status: "Active"
 excerpt: "A sophisticated multi-agent system using Stateful LangGraph and MCP servers to automate trend discovery, script generation, and cross-platform publishing for content creators."
-teaser: /images/projects/insightforge-teaser.jpg
 
 codeurl: "https://github.com/HNg0303/InsightForge"
 tags:
@@ -47,6 +46,29 @@ The system uses a **Stateful LangGraph** graph as the orchestration backbone, wi
 | Tool Access | MCP Servers |
 | LLM Backends | Gemini / GPT-4o / Claude |
 | Language | Python |
+
+## System Architecture
+
+![InsightForge Architecture Diagram](/images/projects/InsightForge_Architecture.png)
+
+The system orchestrates three specialized agents:
+- **Trend Analysis Agent**: Real-time trend discovery across Google Trends, TikTok, and Threads
+- **Content Architect Agent**: Script generation with structured outlines and multimedia cues
+- **Posting Agent**: Cross-platform formatting and automated scheduling
+
+## Workflow
+
+![Multi-Agent Workflow](/images/projects/InsightForge_Workflow.png)
+
+User queries are routed through a **Stateful LangGraph** orchestrator that:
+1. Analyzes trending topics
+2. Generates structured content
+3. Requests human approval before publishing
+4. Executes publishing with feedback loops for continuous refinement
+
+## Recognition
+
+![GDGoC Hackathon Certificate](/images/projects/InsightForge_Certificate.png)
 
 ## Impact
 

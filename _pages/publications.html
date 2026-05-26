@@ -14,10 +14,10 @@ author_profile: true
 <style>
 .pub-list { display: flex; flex-direction: column; gap: 1.2rem; margin-top: 1.5rem; }
 .pub-item {
-  border: 0.5px solid rgba(128,128,128,.2);
+  border: 0.5px solid var(--global-border-color, rgba(128,128,128,.2));
   border-radius: 12px;
   padding: 16px 18px;
-  background: var(--background-color, #fff);
+  background: var(--global-bg-color, var(--background-color, #fff));
   transition: border-color .18s, transform .18s;
   position: relative;
 }
