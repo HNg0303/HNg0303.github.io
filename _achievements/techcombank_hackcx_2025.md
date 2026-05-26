@@ -17,6 +17,8 @@ date_display: "June 2025"
 
 **Techcombank HackCX-Together 2025** is a flagship hackathon organized by Techcombank — one of Vietnam's leading banks — focused on Customer Experience (CX) innovation. The competition attracted 200 teams, challenging participants to reimagine banking interactions using AI.
 
+<img src="/images/achievements/techcombank_team.png" alt="Overall Pipeline" width="1000"/>
+
 ## Our Solution
 
 Our team built an **AI Banking Assistant** designed to enhance customer experience through:
@@ -34,5 +36,6 @@ Our team built an **AI Banking Assistant** designed to enhance customer experien
 ## Result
 
 🥈 **Finalist — Top 24 out of 200 teams**
+<img src="/images\achievements\techcombank_cert.png" alt="Overall Pipeline" width="1000"/>
 
 The solution was selected among the top teams for its practical applicability and robust AI architecture in a regulated financial context.

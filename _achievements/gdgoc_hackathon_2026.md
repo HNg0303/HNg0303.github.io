@@ -17,6 +17,8 @@ date_display: "April 2026"
 
 **GDGoC Hackathon Vietnam 2026** (Google Developer Groups on Campus) is one of Vietnam's largest student hackathons, attracting over 300 teams from universities across the country. The AI Content Architecture track challenged teams to build intelligent systems that automate content creation workflows.
 
+<img src="/images/achievements/gdgoc.png" alt="Overall Pipeline" width="1000"/>
+
 ## Our Solution: InsightForge
 
 Our team built **InsightForge**, a sophisticated multi-agent system for content creators that:
@@ -36,4 +38,5 @@ Our team built **InsightForge**, a sophisticated multi-agent system for content 
 
 🏆 **Finalist — Top 2 out of 300 teams**
 
+<img src="/images/projects/InsightForge_Certificate.png" alt="Overall Pipeline" width="1000"/>
 The solution was recognized for its sophisticated agentic architecture, practical impact (40% workflow time reduction), and production-ready design.

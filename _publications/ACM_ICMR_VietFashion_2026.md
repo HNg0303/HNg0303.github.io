@@ -5,9 +5,9 @@ permalink: /publications/VietFashion/
 date: 2026-04-25
 venue: "ACM International Conference on Multimedia Retrieval (ICMR) 2026"
 rank: B-rank
-category: manuscripts
+category: Conference Paper
 excerpt: "We introduce VietFashion, the first benchmark for sketch–text composed image retrieval targeting culturally-specific Vietnamese traditional outfits, enabling fine-grained cross-modal retrieval via domain-adapted encoder fine-tuning."
-teaser: /images/papers/vietfashion-teaser.jpg
+teaser: /images/publications/ICMR_teaser.png
 
 paperurl: "https://doi.org/10.1145/3805622.3810590"
 codeurl: "https://github.com/HNg0303/VietFashion"
@@ -17,7 +17,7 @@ codeurl: "https://github.com/HNg0303/VietFashion"
 
 This research project presents a novel pipeline combining **SANA-ControlNet for high-fidelity sketch-conditioned image synthesis** with **Qwen2.5 3B Instruct for semantic caption generation**. We address the critical challenge of obtaining diverse, high-quality training data for specialized domains like cultural garments. Our approach automates the entire triplet synthesis workflow, eliminating manual annotation and producing a large-scale, multi-modal dataset suitable for training and evaluation of composed image retrieval systems.
 
-<img src="images/publications/ICMR2026_overview.png" alt="Overall Pipeline" width="1000"/>
+<img src="/images/publications/ICMR_overview.png" alt="Overall Pipeline" width="1000"/>
 
 ## 🎯 Motivation
 
@@ -36,7 +36,7 @@ This project addresses this challenge by:
 
 Our pipeline follows a structured flow from abstract sketch input to aligned multi-modal triplets:
 
-<img src="images/publications/ICMR2026_pipeline.png" alt="Overall Pipeline" width="1000"/>
+<img src="/images/publications/ICMR_pipeline.png" alt="Overall Pipeline" width="1000"/>
 
 ### Key Components
 
@@ -88,7 +88,7 @@ The project includes implementations and evaluations of:
 - **SEARLE**: Scalable end-to-end architecture for image retrieval
 
 ### Result
-<img src="images/publications/ICMR2026_result.png" alt="Overall Pipeline" width="1000"/>
+<img src="/images/publications/ICMR_result.png" alt="Overall Pipeline" width="1000"/>
 
 ## Citation
 
