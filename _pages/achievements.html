@@ -7,9 +7,77 @@ author_profile: true
 
 {% include base_path %}
 
-<div class="archive--card-grid">
+<style>
+.ach-list { display: flex; flex-direction: column; gap: 12px; margin-top: 1.5rem; }
+.ach-card {
+  display: flex; align-items: center; gap: 16px;
+  border: .5px solid rgba(128,128,128,.2);
+  border-radius: 14px; padding: 16px 18px;
+  background: var(--background-color, #fff);
+  transition: border-color .18s, transform .18s;
+  position: relative; overflow: hidden;
+}
+.ach-card:hover { border-color: rgba(128,128,128,.4); transform: translateX(4px); }
+.ach-card::before {
+  content: '';
+  position: absolute; left: 0; top: 0; bottom: 0; width: 3px;
+  background: linear-gradient(180deg, #f59e0b, #fbbf24);
+  opacity: 0; transition: opacity .2s; border-radius: 3px 0 0 3px;
+}
+.ach-card:hover::before { opacity: 1; }
+.ach-icon {
+  width: 42px; height: 42px; border-radius: 10px; flex-shrink: 0;
+  display: flex; align-items: center; justify-content: center; font-size: 22px;
+  background: rgba(234,179,8,.1); border: .5px solid rgba(234,179,8,.25);
+}
+.ach-icon.silver { background: rgba(148,163,184,.1); border-color: rgba(148,163,184,.25); }
+.ach-body { flex: 1; }
+.ach-title { font-size: 14px; font-weight: 600; margin-bottom: 3px; }
+.ach-title a { color: inherit; text-decoration: none; }
+.ach-title a:hover { color: #6366f1; }
+.ach-meta { font-size: 11.5px; opacity: .55; }
+.ach-badge {
+  font-size: 10px; padding: 3px 11px; border-radius: 20px; white-space: nowrap;
+  background: rgba(234,179,8,.1); color: #b45309;
+  border: .5px solid rgba(234,179,8,.28);
+  font-family: monospace; font-weight: 600; flex-shrink: 0;
+}
+.ach-badge.silver { background: rgba(148,163,184,.1); color: #64748b; border-color: rgba(148,163,184,.28); }
+</style>
+
+<div class="ach-list">
   {% for post in site.achievements reversed %}
-    {% include archive-single.html type="card" %}
+  <div class="ach-card">
+    <div class="ach-icon {% if forloop.index > 1 %}silver{% endif %}">
+      {% if forloop.index == 1 %}🏆{% else %}🥈{% endif %}
+    </div>
+    <div class="ach-body">
+      <div class="ach-title"><a href="{{ post.url }}">{{ post.title }}</a></div>
+      <div class="ach-meta">{{ post.event }} · {{ post.location }} · {{ post.date_display }}</div>
+    </div>
+    <div class="ach-badge {% if forloop.index > 1 %}silver{% endif %}">{{ post.award }}</div>
+  </div>
   {% endfor %}
 </div>
 
+<!-- Fallback if no achievements collection items exist yet -->
+{% if site.achievements.size == 0 %}
+<div class="ach-list">
+  <div class="ach-card">
+    <div class="ach-icon">🏆</div>
+    <div class="ach-body">
+      <div class="ach-title">Finalist — Top 2 / 300 · GDGoC Hackathon Vietnam 2026</div>
+      <div class="ach-meta">AI Content Architecture · Hanoi · April 2026</div>
+    </div>
+    <div class="ach-badge">Top 2 / 300</div>
+  </div>
+  <div class="ach-card">
+    <div class="ach-icon silver">🥈</div>
+    <div class="ach-body">
+      <div class="ach-title">Finalist — Top 24 / 200 · Techcombank HackCX-Together 2025</div>
+      <div class="ach-meta">AI Banking Assistant · Hanoi · June 2025</div>
+    </div>
+    <div class="ach-badge silver">Top 24 / 200</div>
+  </div>
+</div>
+{% endif %}

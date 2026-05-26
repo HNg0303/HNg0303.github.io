@@ -1,16 +1,91 @@
 ---
 layout: archive
-title: "Portfolio"
+title: "Projects"
 permalink: /portfolio/
 author_profile: true
 ---
 
 {% include base_path %}
 
-<div class="archive--card-grid">
+<style>
+.proj-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 16px;
+  margin-top: 1.5rem;
+}
+.proj-card {
+  border: .5px solid rgba(128,128,128,.2);
+  border-radius: 14px;
+  overflow: hidden;
+  background: var(--background-color, #fff);
+  transition: border-color .2s, transform .2s;
+  cursor: pointer;
+  display: flex; flex-direction: column;
+}
+.proj-card:hover { border-color: rgba(128,128,128,.4); transform: translateY(-3px); }
+.proj-thumb {
+  height: 120px;
+  background: linear-gradient(135deg, hsl(240,60%,12%), hsl(280,50%,8%));
+  position: relative;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 36px;
+}
+.proj-status {
+  position: absolute; top: 10px; right: 10px;
+  font-size: 10px; padding: 2px 9px; border-radius: 20px;
+  display: flex; align-items: center; gap: 4px;
+}
+.proj-status.active { background: rgba(34,197,94,.2); color: #16a34a; border: .5px solid rgba(34,197,94,.35); }
+.proj-status.completed { background: rgba(99,102,241,.12); color: #6366f1; border: .5px solid rgba(99,102,241,.3); }
+.proj-status-dot { width: 5px; height: 5px; border-radius: 50%; background: currentColor; }
+.proj-body { padding: 14px 16px; flex: 1; display: flex; flex-direction: column; gap: 6px; }
+.proj-title { font-size: 15px; font-weight: 600; }
+.proj-title a { color: inherit; text-decoration: none; }
+.proj-title a:hover { color: #6366f1; }
+.proj-excerpt { font-size: 12px; opacity: .6; line-height: 1.5; flex: 1; }
+.proj-tags { display: flex; gap: 5px; flex-wrap: wrap; margin-top: 4px; }
+.proj-tag {
+  font-size: 10px; padding: 2px 8px; border-radius: 5px;
+  background: rgba(128,128,128,.08); border: .5px solid rgba(128,128,128,.18);
+  font-family: monospace; opacity: .8;
+}
+.proj-links { display: flex; gap: 6px; margin-top: 8px; padding-top: 8px; border-top: .5px solid rgba(128,128,128,.12); }
+.proj-link {
+  font-size: 11px; padding: 3px 10px; border-radius: 6px;
+  border: .5px solid rgba(128,128,128,.22); background: rgba(128,128,128,.06);
+  text-decoration: none; color: inherit; opacity: .8;
+  transition: opacity .15s;
+}
+.proj-link:hover { opacity: 1; }
+</style>
+
+<div class="proj-grid">
   {% for post in site.portfolio %}
-    {% include archive-single.html type="card" %}
+  <div class="proj-card" onclick="window.location='{{ post.url }}'">
+    <div class="proj-thumb" style="background: linear-gradient(135deg, hsl({{ forloop.index | times: 47 | modulo: 360 }},60%,10%), hsl({{ forloop.index | times: 83 | modulo: 360 }},50%,7%))">
+      {% if post.status == "Active" %}
+        <div class="proj-status active"><span class="proj-status-dot"></span>Active</div>
+      {% else %}
+        <div class="proj-status completed"><span class="proj-status-dot"></span>Completed</div>
+      {% endif %}
+      <span>🚀</span>
+    </div>
+    <div class="proj-body">
+      <div class="proj-title"><a href="{{ post.url }}" onclick="event.stopPropagation()">{{ post.title }}</a></div>
+      <div class="proj-excerpt">{{ post.excerpt }}</div>
+      {% if post.tags %}
+      <div class="proj-tags">
+        {% for tag in post.tags limit:5 %}
+          <span class="proj-tag">{{ tag }}</span>
+        {% endfor %}
+      </div>
+      {% endif %}
+      <div class="proj-links">
+        {% if post.codeurl %}<a class="proj-link" href="{{ post.codeurl }}" target="_blank" onclick="event.stopPropagation()">💻 Code</a>{% endif %}
+        <a class="proj-link" href="{{ post.url }}" onclick="event.stopPropagation()">Details →</a>
+      </div>
+    </div>
+  </div>
   {% endfor %}
 </div>
-
-

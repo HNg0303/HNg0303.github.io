@@ -11,9 +11,52 @@ author_profile: true
 
 {% include base_path %}
 
+<style>
+.pub-list { display: flex; flex-direction: column; gap: 1.2rem; margin-top: 1.5rem; }
+.pub-item {
+  border: 0.5px solid rgba(128,128,128,.2);
+  border-radius: 12px;
+  padding: 16px 18px;
+  background: var(--background-color, #fff);
+  transition: border-color .18s, transform .18s;
+  position: relative;
+}
+.pub-item:hover { border-color: rgba(128,128,128,.4); transform: translateX(4px); }
+.pub-item::before {
+  content: '';
+  position: absolute; left: 0; top: 0; bottom: 0; width: 3px;
+  border-radius: 3px 0 0 3px;
+  background: linear-gradient(180deg, #6366f1, #a78bfa);
+  opacity: 0; transition: opacity .2s;
+}
+.pub-item:hover::before { opacity: 1; }
+.pub-rank {
+  display: inline-block;
+  font-size: 10px; font-weight: 600; letter-spacing: .5px;
+  padding: 2px 9px; border-radius: 20px;
+  margin-bottom: 6px;
+}
+.pub-rank.b-rank { background: rgba(99,102,241,.12); color: #6366f1; border: .5px solid rgba(99,102,241,.3); }
+.pub-rank.scopus  { background: rgba(16,163,74,.12); color: #16a34a; border: .5px solid rgba(16,163,74,.3); }
+.pub-title { font-size: 15px; font-weight: 600; margin-bottom: 4px; line-height: 1.4; }
+.pub-title a { color: inherit; text-decoration: none; }
+.pub-title a:hover { color: #6366f1; }
+.pub-venue { font-size: 12px; opacity: .6; margin-bottom: 8px; }
+.pub-excerpt { font-size: 12px; opacity: .65; line-height: 1.5; margin-bottom: 10px; }
+.pub-links { display: flex; gap: 6px; flex-wrap: wrap; }
+.pub-link {
+  font-size: 11px; padding: 3px 11px; border-radius: 6px;
+  border: .5px solid rgba(128,128,128,.25);
+  background: rgba(128,128,128,.06);
+  text-decoration: none; color: inherit; opacity: .8;
+  transition: opacity .15s, background .15s;
+}
+.pub-link:hover { opacity: 1; background: rgba(128,128,128,.12); }
+</style>
+
 <!-- New style rendering if publication categories are defined -->
 {% if site.publication_category %}
-  {% for category in site.publication_category  %}
+  {% for category in site.publication_category %}
     {% assign title_shown = false %}
     {% for post in site.publications reversed %}
       {% if post.category != category[0] %}
@@ -27,10 +70,28 @@ author_profile: true
     {% endfor %}
   {% endfor %}
 {% else %}
+
+<div class="pub-list">
   {% for post in site.publications reversed %}
-    {% include archive-single.html %}
+  <div class="pub-item">
+    {% if post.rank == "B-rank" %}
+      <span class="pub-rank b-rank">B-Rank · ACM ICMR</span>
+    {% elsif post.rank == "Scopus-indexed" %}
+      <span class="pub-rank scopus">Scopus · SoICT</span>
+    {% endif %}
+    <div class="pub-title"><a href="{{ post.url }}">{{ post.title }}</a></div>
+    <div class="pub-venue">{{ post.venue }} · {{ post.date | date: "%Y" }}</div>
+    {% if post.excerpt %}
+      <div class="pub-excerpt">{{ post.excerpt }}</div>
+    {% endif %}
+    <div class="pub-links">
+      {% if post.paperurl %}<a class="pub-link" href="{{ post.paperurl }}" target="_blank">📄 Paper</a>{% endif %}
+      {% if post.codeurl %}<a class="pub-link" href="{{ post.codeurl }}" target="_blank">💻 Code</a>{% endif %}
+      {% if post.projecturl %}<a class="pub-link" href="{{ post.projecturl }}" target="_blank">🌐 Project</a>{% endif %}
+      <a class="pub-link" href="{{ post.url }}">Details →</a>
+    </div>
+  </div>
   {% endfor %}
+</div>
+
 {% endif %}
-
-
-

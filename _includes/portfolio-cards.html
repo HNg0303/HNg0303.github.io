@@ -1,18 +1,12 @@
 <!--
   PORTFOLIO CARDS — Drop-in for Academic Pages / Jekyll
   Place this file as _includes/portfolio-cards.html
-  Then add the tag (without braces): percent include portfolio-cards.html percent
+  Then add {% include portfolio-cards.html %} to your index/about page.
 
-  FEATURES:
-  - Animated canvas thumbnails (neural graph, wave-particle field)
-  - Hover keyword overlays on publications
-  - GitHub star counts (fetched live, gracefully falls back)
-  - Timeline connector on experience
-  - Skill tags per role
-  - Status chips: Active / Published / Completed
-  - Reading time estimates
-  - No underlines — clean typographic hierarchy
-  - Dark-mode aware
+  CHANGES:
+  - Dark-mode fix: card backgrounds now use var(--background-color) properly
+  - Sections redirect to /publications/ and /portfolio/ pages
+  - Real CV data: correct experience, publications, projects, achievements
 -->
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -29,6 +23,17 @@
   --green:#16a34a;
   --green-bg:rgba(34,197,94,.12);
   --green-border:rgba(34,197,94,.3);
+  /* dark-mode-aware card surface */
+  --card-bg: var(--background-color, #ffffff);
+  --card-border: rgba(128,128,128,.2);
+  --card-border-hover: rgba(128,128,128,.4);
+}
+
+/* Force dark-mode awareness — Academic Pages sets body.dark on toggle */
+@media (prefers-color-scheme: dark) {
+  .port-wrap{
+    --card-bg: var(--background-color, #1a1a2e);
+  }
 }
 
 /* ── SECTION HEADER ──────────────────────────────────────── */
@@ -47,6 +52,13 @@
   border:.5px solid rgba(128,128,128,.18);
   padding:2px 9px;border-radius:20px
 }
+.port-sec-viewall{
+  font-size:11px;color:var(--accent);text-decoration:none;
+  display:flex;align-items:center;gap:4px;white-space:nowrap;
+  opacity:.8;transition:opacity .15s;font-family:'DM Mono',monospace
+}
+.port-sec-viewall:hover{opacity:1}
+.port-sec-viewall svg{width:11px;height:11px}
 
 /* ══════════════════════════════════════════════════════════
    EXPERIENCE
@@ -60,8 +72,8 @@
 
 .port-exp-card{
   display:grid;grid-template-columns:50px 1fr auto;gap:0 14px;align-items:start;
-  background:var(--background-color,#fff);
-  border:.5px solid rgba(128,128,128,.2);border-radius:14px;
+  background:var(--card-bg);
+  border:.5px solid var(--card-border);border-radius:14px;
   padding:14px 16px;
   transition:border-color .18s,transform .18s;
   cursor:default;position:relative;overflow:hidden
@@ -71,13 +83,13 @@
   background:linear-gradient(180deg,var(--accent),var(--accent2));
   opacity:0;transition:opacity .2s
 }
-.port-exp-card:hover{border-color:rgba(128,128,128,.4);transform:translateX(4px)}
+.port-exp-card:hover{border-color:var(--card-border-hover);transform:translateX(4px)}
 .port-exp-card:hover::before{opacity:1}
 
 .port-exp-dot{
   position:absolute;left:-17px;top:20px;
   width:10px;height:10px;border-radius:50%;
-  background:var(--background-color,#fff);
+  background:var(--card-bg);
   border:2px solid var(--accent);z-index:1
 }
 
@@ -127,13 +139,13 @@
 }
 
 .port-pub-card{
-  background:var(--background-color,#fff);
-  border:.5px solid rgba(128,128,128,.2);
+  background:var(--card-bg);
+  border:.5px solid var(--card-border);
   border-radius:14px;overflow:hidden;
   transition:border-color .2s,transform .2s;
   cursor:pointer;display:flex;flex-direction:column
 }
-.port-pub-card:hover{border-color:rgba(128,128,128,.4);transform:translateY(-3px)}
+.port-pub-card:hover{border-color:var(--card-border-hover);transform:translateY(-3px)}
 .port-pub-card:hover .port-pub-thumb canvas{transform:scale(1.04)}
 .port-pub-card:hover .port-pub-kws{opacity:1;transform:translateY(0)}
 .port-pub-card:hover .port-pub-overlay{opacity:1}
@@ -208,12 +220,12 @@
 
 .port-proj-card{
   border-radius:14px;overflow:hidden;
-  border:.5px solid rgba(128,128,128,.2);
+  border:.5px solid var(--card-border);
   transition:border-color .2s,transform .2s;
   cursor:pointer;
-  background:var(--background-color,#fff)
+  background:var(--card-bg)
 }
-.port-proj-card:hover{border-color:rgba(128,128,128,.4);transform:translateY(-3px)}
+.port-proj-card:hover{border-color:var(--card-border-hover);transform:translateY(-3px)}
 .port-proj-card:hover .port-proj-thumb canvas{transform:scale(1.04)}
 
 .port-proj-thumb{height:128px;position:relative;overflow:hidden}
@@ -269,6 +281,33 @@
 }
 .port-proj-link:hover{opacity:1}
 .port-proj-link svg{width:12px;height:12px}
+
+/* ══════════════════════════════════════════════════════════
+   ACHIEVEMENTS
+══════════════════════════════════════════════════════════ */
+.port-ach-list{display:flex;flex-direction:column;gap:8px;margin-bottom:.5rem}
+.port-ach-card{
+  display:flex;align-items:center;gap:14px;
+  background:var(--card-bg);
+  border:.5px solid var(--card-border);border-radius:12px;
+  padding:12px 16px;
+  transition:border-color .18s,transform .18s
+}
+.port-ach-card:hover{border-color:var(--card-border-hover);transform:translateX(4px)}
+.port-ach-icon{
+  width:36px;height:36px;border-radius:9px;flex-shrink:0;
+  display:flex;align-items:center;justify-content:center;font-size:18px
+}
+.port-ach-icon.gold{background:rgba(234,179,8,.14);border:.5px solid rgba(234,179,8,.3)}
+.port-ach-icon.silver{background:rgba(148,163,184,.12);border:.5px solid rgba(148,163,184,.28)}
+.port-ach-body{flex:1}
+.port-ach-title{font-size:13px;font-weight:500;margin-bottom:2px}
+.port-ach-meta{font-size:11px;opacity:.5;font-family:'DM Mono',monospace}
+.port-ach-badge{
+  font-size:10px;padding:2px 9px;border-radius:20px;
+  background:rgba(234,179,8,.1);color:#b45309;
+  border:.5px solid rgba(234,179,8,.3);white-space:nowrap;font-family:'DM Mono',monospace
+}
 </style>
 
 <div class="port-wrap">
@@ -277,60 +316,35 @@
   <div class="port-sec-head">
     <h2>Experience</h2>
     <div class="port-sec-line"></div>
-    <span class="port-sec-count">2 roles</span>
+    <span class="port-sec-count">1 role</span>
   </div>
 
   <div class="port-exp-wrap">
     <div class="port-exp-spine"></div>
     <div class="port-exp-list">
 
-      <!-- Qualcomm -->
+      <!-- HCMUS Research -->
       <div class="port-exp-card" style="position:relative">
         <div class="port-exp-dot"></div>
         <div class="port-exp-logo">
           <canvas id="port-logo-q" width="88" height="88"></canvas>
-          <span class="port-exp-logo-ltr">Q</span>
+          <span class="port-exp-logo-ltr">R</span>
         </div>
         <div>
-          <div class="port-exp-company">Qualcomm AI Research</div>
-          <div class="port-exp-role">Research Resident</div>
-          <div class="port-exp-desc">Controllable image generation &amp; test-time alignment for generative models. Investigating energy-guided sampling and classifier-free guidance strategies at scale.</div>
+          <div class="port-exp-company">Ho Chi Minh University of Science · VNUHCM</div>
+          <div class="port-exp-role">Undergraduate Research Assistant</div>
+          <div class="port-exp-desc">Research in Vision-Language Models (VLMs), cross-modal retrieval, and Generative AI under PhD supervision. Co-authored a first-author paper accepted at ACM ICMR 2026 (Amsterdam) — B-Rank / Top-tier venue. Executed full research pipeline: dataset curation, model fine-tuning, benchmark design, and manuscript review.</div>
           <div class="port-exp-skills">
-            <span class="port-exp-skill">Diffusion Models</span>
-            <span class="port-exp-skill">RLHF</span>
-            <span class="port-exp-skill">PyTorch</span>
-            <span class="port-exp-skill">CUDA</span>
-            <span class="port-exp-skill">Controllable Generation</span>
-          </div>
-        </div>
-        <div class="port-exp-right">
-          <div class="port-exp-date">2024 – present</div>
-          <div class="port-badge active"><span class="port-badge-dot"></span>Active</div>
-        </div>
-      </div>
-
-      <!-- VinAI -->
-      <div class="port-exp-card" style="position:relative">
-        <div class="port-exp-dot" style="border-color:var(--accent2)"></div>
-        <div class="port-exp-logo">
-          <canvas id="port-logo-v" width="88" height="88"></canvas>
-          <span class="port-exp-logo-ltr">V</span>
-        </div>
-        <div>
-          <div class="port-exp-company">VinAI Research</div>
-          <div class="port-exp-role">Research Resident</div>
-          <div class="port-exp-desc">Image personalization &amp; visual content generation. Explored identity-preserving generation and multi-concept composition with diffusion models.</div>
-          <div class="port-exp-skills">
-            <span class="port-exp-skill">Image Personalization</span>
             <span class="port-exp-skill">VLMs</span>
-            <span class="port-exp-skill">Stable Diffusion</span>
-            <span class="port-exp-skill">CLIP</span>
-            <span class="port-exp-skill">Cross-modal</span>
+            <span class="port-exp-skill">Cross-Modal Retrieval</span>
+            <span class="port-exp-skill">Generative AI</span>
+            <span class="port-exp-skill">PyTorch</span>
+            <span class="port-exp-skill">HuggingFace</span>
           </div>
         </div>
         <div class="port-exp-right">
-          <div class="port-exp-date">2023 – 2024</div>
-          <div class="port-badge ended">Completed</div>
+          <div class="port-exp-date">Oct 2025 – present</div>
+          <div class="port-badge active"><span class="port-badge-dot"></span>Active</div>
         </div>
       </div>
 
@@ -341,17 +355,22 @@
   <div class="port-sec-head">
     <h2>Publications</h2>
     <div class="port-sec-line"></div>
-    <span class="port-sec-count" id="port-pub-count">2 papers</span>
+    <span class="port-sec-count">2 papers</span>
+    <a class="port-sec-viewall" href="/publications/">
+      View all
+      <svg viewBox="0 0 12 12" fill="none"><path d="M2 6h8M7 3l3 3-3 3" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </a>
   </div>
 
   <div class="port-pub-grid">
 
-    <div class="port-pub-card" onclick="window.open('#','_blank')">
+    <!-- ACM ICMR 2026 -->
+    <div class="port-pub-card" onclick="window.location='/publications/VietFashion/'">
       <div class="port-pub-thumb">
         <canvas id="port-pub1" width="600" height="220"></canvas>
         <div class="port-pub-overlay"></div>
-        <div class="port-pub-venue-badge">ACM MM Retrieval 2024</div>
-        <div class="port-pub-year" style="background:rgba(99,102,241,.72)">2024</div>
+        <div class="port-pub-venue-badge">ACM ICMR 2026 · B-Rank</div>
+        <div class="port-pub-year" style="background:rgba(99,102,241,.72)">2026</div>
         <div class="port-pub-kws">
           <span class="port-pub-kw">Sketch–Text</span>
           <span class="port-pub-kw">Cross-Modal</span>
@@ -361,14 +380,14 @@
         </div>
       </div>
       <div class="port-pub-body">
-        <div class="port-pub-area">Cross-modal Retrieval</div>
+        <div class="port-pub-area">Cross-modal Retrieval · First Author</div>
         <div class="port-pub-title">VietFashion: Benchmarking Sketch–Text Composed Image Retrieval for Cultural Outfits</div>
-        <div class="port-pub-desc">A benchmark for composed image retrieval using culturally specific Vietnamese fashion datasets combining sketch and text modalities.</div>
+        <div class="port-pub-desc">A novel benchmark for composed image retrieval using culturally specific Vietnamese fashion datasets combining sketch and text modalities.</div>
         <div class="port-pub-footer">
           <div class="port-pub-tags">
-            <a class="port-pub-tag" href="#" onclick="event.stopPropagation()">Paper</a>
-            <a class="port-pub-tag" href="#" onclick="event.stopPropagation()">Code</a>
-            <a class="port-pub-tag" href="#" onclick="event.stopPropagation()">Project</a>
+            <a class="port-pub-tag" href="https://doi.org/10.1145/3805622.3810590" target="_blank" onclick="event.stopPropagation()">Paper</a>
+            <a class="port-pub-tag" href="https://github.com/HNg0303/VietFashion" target="_blank" onclick="event.stopPropagation()">Code</a>
+            <a class="port-pub-tag" href="https://hng0303.github.io/VietFashion/" target="_blank" onclick="event.stopPropagation()">Project</a>
           </div>
           <div class="port-pub-readtime">
             <svg viewBox="0 0 16 16" fill="none" style="width:11px;height:11px;opacity:.6"><circle cx="8" cy="8" r="6.5" stroke="currentColor" stroke-width="1"/><path d="M8 5v3.5l2 1.5" stroke="currentColor" stroke-width="1" stroke-linecap="round"/></svg>
@@ -378,12 +397,13 @@
       </div>
     </div>
 
-    <div class="port-pub-card" onclick="window.open('#','_blank')">
+    <!-- SoICT 2025 -->
+    <div class="port-pub-card" onclick="window.location='/publications/ExploringFashionRetrieval/'">
       <div class="port-pub-thumb">
         <canvas id="port-pub2" width="600" height="220"></canvas>
         <div class="port-pub-overlay"></div>
-        <div class="port-pub-venue-badge">SOICT 2023</div>
-        <div class="port-pub-year" style="background:rgba(236,72,153,.72)">2023</div>
+        <div class="port-pub-venue-badge">SoICT 2025 · Scopus</div>
+        <div class="port-pub-year" style="background:rgba(236,72,153,.72)">2025</div>
         <div class="port-pub-kws">
           <span class="port-pub-kw">Multi-Modal LLM</span>
           <span class="port-pub-kw">Fashion Retrieval</span>
@@ -393,12 +413,12 @@
       </div>
       <div class="port-pub-body">
         <div class="port-pub-area">Fashion Image Retrieval</div>
-        <div class="port-pub-title">Exploring Multi-Modal LLMs and Two-Stage Fine-Tuning for Fashion Image Retrieval</div>
+        <div class="port-pub-title">Exploring Multi-Modal Large Language Models and Two-Stage Fine-Tuning for Fashion Image Retrieval</div>
         <div class="port-pub-desc">Investigates multi-modal large language models with a two-stage fine-tuning paradigm for robust fashion retrieval.</div>
         <div class="port-pub-footer">
           <div class="port-pub-tags">
-            <a class="port-pub-tag" href="#" onclick="event.stopPropagation()">Paper</a>
-            <a class="port-pub-tag" href="#" onclick="event.stopPropagation()">Code</a>
+            <a class="port-pub-tag" href="https://doi.org/10.1145/3805622.3810590" target="_blank" onclick="event.stopPropagation()">Paper</a>
+            <a class="port-pub-tag" href="https://github.com/HNg0303/VietFashion" target="_blank" onclick="event.stopPropagation()">Code</a>
           </div>
           <div class="port-pub-readtime">
             <svg viewBox="0 0 16 16" fill="none" style="width:11px;height:11px;opacity:.6"><circle cx="8" cy="8" r="6.5" stroke="currentColor" stroke-width="1"/><path d="M8 5v3.5l2 1.5" stroke="currentColor" stroke-width="1" stroke-linecap="round"/></svg>
@@ -415,77 +435,114 @@
     <h2>Projects</h2>
     <div class="port-sec-line"></div>
     <span class="port-sec-count">2 projects</span>
+    <a class="port-sec-viewall" href="/portfolio/">
+      View all
+      <svg viewBox="0 0 12 12" fill="none"><path d="M2 6h8M7 3l3 3-3 3" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </a>
   </div>
 
   <div class="port-proj-grid">
 
-    <div class="port-proj-card">
+    <!-- InsightForge -->
+    <div class="port-proj-card" onclick="window.location='/portfolio/insightforge/'">
       <div class="port-proj-thumb">
         <canvas id="port-pr1" width="600" height="256"></canvas>
         <div class="port-proj-grad"></div>
         <div class="port-proj-pills">
           <span class="port-proj-pill green">Active</span>
-          <span class="port-proj-pill">VLM</span>
+          <span class="port-proj-pill">Multi-Agent</span>
         </div>
         <div class="port-proj-gh">
           <svg viewBox="0 0 16 16" fill="currentColor" style="width:11px;height:11px"><path d="M8 .25a.75.75 0 0 1 .673.418l1.882 3.815 4.21.612a.75.75 0 0 1 .416 1.279l-3.046 2.97.719 4.192a.75.75 0 0 1-1.088.791L8 12.347l-3.766 1.98a.75.75 0 0 1-1.088-.79l.72-4.194L.818 6.374a.75.75 0 0 1 .416-1.28l4.21-.611L7.327.668A.75.75 0 0 1 8 .25Z"/></svg>
           <span id="port-stars-1">–</span>
         </div>
-        <div class="port-proj-arch">contrastive · faiss · clip</div>
+        <div class="port-proj-arch">LangGraph · MCP · A2A · Multi-Agent</div>
       </div>
       <div class="port-proj-body">
         <div class="port-proj-titlerow">
-          <span class="port-proj-title">Cross-Modal Retrieval Engine</span>
+          <span class="port-proj-title">InsightForge — Agentic Content Creator</span>
           <span class="port-proj-status active"><span class="port-proj-status-dot"></span>Active</span>
         </div>
-        <div class="port-proj-desc">End-to-end retrieval combining sketch, text and image modalities with contrastive learning and FAISS approximate nearest-neighbour search.</div>
+        <div class="port-proj-desc">Multi-agent system using Stateful LangGraph and MCP to automate trend discovery, script generation, and cross-platform publishing — reducing creator workflow time by 40%. GDGoC Hackathon 2026 Finalist (Top 2 / 300).</div>
         <div class="port-proj-foot">
           <div class="port-proj-stack">
-            <span class="port-proj-chip">PyTorch</span>
-            <span class="port-proj-chip">CLIP</span>
-            <span class="port-proj-chip">FAISS</span>
+            <span class="port-proj-chip">LangGraph</span>
+            <span class="port-proj-chip">MCP</span>
+            <span class="port-proj-chip">A2A</span>
             <span class="port-proj-chip">Python</span>
           </div>
-          <a class="port-proj-link" href="#">View
+          <a class="port-proj-link" href="/portfolio/insightforge/" onclick="event.stopPropagation()">View
             <svg viewBox="0 0 12 12" fill="none"><path d="M2 6h8M7 3l3 3-3 3" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
           </a>
         </div>
       </div>
     </div>
 
-    <div class="port-proj-card">
+    <!-- RAGNews -->
+    <div class="port-proj-card" onclick="window.location='/portfolio/ragnews/'">
       <div class="port-proj-thumb">
         <canvas id="port-pr2" width="600" height="256"></canvas>
         <div class="port-proj-grad"></div>
         <div class="port-proj-pills">
-          <span class="port-proj-pill">Published</span>
-          <span class="port-proj-pill">Generative</span>
+          <span class="port-proj-pill">Completed</span>
+          <span class="port-proj-pill">RAG</span>
         </div>
         <div class="port-proj-gh">
           <svg viewBox="0 0 16 16" fill="currentColor" style="width:11px;height:11px"><path d="M8 .25a.75.75 0 0 1 .673.418l1.882 3.815 4.21.612a.75.75 0 0 1 .416 1.279l-3.046 2.97.719 4.192a.75.75 0 0 1-1.088.791L8 12.347l-3.766 1.98a.75.75 0 0 1-1.088-.79l.72-4.194L.818 6.374a.75.75 0 0 1 .416-1.28l4.21-.611L7.327.668A.75.75 0 0 1 8 .25Z"/></svg>
           <span id="port-stars-2">–</span>
         </div>
-        <div class="port-proj-arch">diffusers · energy-guided · cfg</div>
+        <div class="port-proj-arch">RAG · Milvus · LLM · vLLM · LoRA</div>
       </div>
       <div class="port-proj-body">
         <div class="port-proj-titlerow">
-          <span class="port-proj-title">Controllable Diffusion Sampling</span>
-          <span class="port-proj-status published"><span class="port-proj-status-dot"></span>Published</span>
+          <span class="port-proj-title">RAGNews — Agentic News Platform</span>
+          <span class="port-proj-status published"><span class="port-proj-status-dot"></span>Completed</span>
         </div>
-        <div class="port-proj-desc">Test-time alignment for diffusion models via energy-guided sampling and classifier-free guidance. Fine-grained control without retraining.</div>
+        <div class="port-proj-desc">Agentic RAG pipeline with two-stage retrieval (Milvus + BGE-Reranker). Fine-tuned Qwen2.5-1.5B via LoRA/Unsloth for domain summarization. Served with vLLM for high-throughput inference.</div>
         <div class="port-proj-foot">
           <div class="port-proj-stack">
-            <span class="port-proj-chip">Diffusers</span>
-            <span class="port-proj-chip">CUDA</span>
-            <span class="port-proj-chip">Python</span>
+            <span class="port-proj-chip">FastAPI</span>
+            <span class="port-proj-chip">Milvus</span>
+            <span class="port-proj-chip">LoRA</span>
+            <span class="port-proj-chip">vLLM</span>
           </div>
-          <a class="port-proj-link" href="#">View
+          <a class="port-proj-link" href="/portfolio/ragnews/" onclick="event.stopPropagation()">View
             <svg viewBox="0 0 12 12" fill="none"><path d="M2 6h8M7 3l3 3-3 3" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
           </a>
         </div>
       </div>
     </div>
 
+  </div>
+
+  <!-- ═══════════ ACHIEVEMENTS ═══════════ -->
+  <div class="port-sec-head" style="margin-top:2.8rem">
+    <h2>Achievements</h2>
+    <div class="port-sec-line"></div>
+    <span class="port-sec-count">2 awards</span>
+    <a class="port-sec-viewall" href="/achievements/">
+      View all
+      <svg viewBox="0 0 12 12" fill="none"><path d="M2 6h8M7 3l3 3-3 3" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </a>
+  </div>
+
+  <div class="port-ach-list">
+    <div class="port-ach-card">
+      <div class="port-ach-icon gold">🏆</div>
+      <div class="port-ach-body">
+        <div class="port-ach-title">Finalist — Top 2 / 300 · GDGoC Hackathon Vietnam 2026</div>
+        <div class="port-ach-meta">AI Content Architecture · Hanoi · April 2026</div>
+      </div>
+      <div class="port-ach-badge">Top 2 / 300</div>
+    </div>
+    <div class="port-ach-card">
+      <div class="port-ach-icon silver">🥈</div>
+      <div class="port-ach-body">
+        <div class="port-ach-title">Finalist — Top 24 / 200 · Techcombank HackCX-Together 2025</div>
+        <div class="port-ach-meta">AI Banking Assistant · Hanoi · June 2025</div>
+      </div>
+      <div class="port-ach-badge">Top 24 / 200</div>
+    </div>
   </div>
 
 </div><!-- /port-wrap -->
@@ -493,14 +550,9 @@
 <script>
 (function(){
   var RAF = requestAnimationFrame;
-  var ticks = {q:0, v:0, p1:0, p2:0, r1:0, r2:0};
-  var canvases = {};
+  var ticks = {q:0, p1:0, p2:0, r1:0, r2:0};
 
   function get(id){ return document.getElementById(id); }
-  function ctx(id){
-    var c = get(id);
-    return c ? c.getContext('2d') : null;
-  }
 
   /* ── LOGO: pulsing gradient ── */
   function drawLogo(id, hue, tick){
@@ -584,7 +636,6 @@
       });
     }
 
-    /* edges */
     for(var a=0;a<nodes.length;a++){
       for(var b=a+1;b<nodes.length;b++){
         var na=nodes[a],nb=nodes[b];
@@ -599,7 +650,6 @@
       }
     }
 
-    /* glow + nodes */
     nodes.forEach(function(n){
       var gw=x.createRadialGradient(n.x,n.y,0,n.x,n.y,n.r*3.5);
       gw.addColorStop(0,'hsla('+(h1+n.i*18)+',88%,76%,0.48)');
@@ -611,7 +661,6 @@
       x.fill();
     });
 
-    /* moving spotlight */
     var hx=w*0.3+Math.sin(tick*0.016)*w*0.36;
     var hy=h*0.5+Math.cos(tick*0.013)*h*0.32;
     var hr=x.createRadialGradient(hx,hy,0,hx,hy,72);
@@ -623,7 +672,6 @@
   /* ── ANIMATION LOOP ── */
   function tick(){
     drawLogo('port-logo-q', 240, ticks.q++);
-    drawLogo('port-logo-v', 155, ticks.v++);
     drawPub('port-pub1', 200, 260, ticks.p1++);
     drawPub('port-pub2', 320, 15, ticks.p2++);
     drawProj('port-pr1', 188, 248, ticks.r1++);
@@ -632,10 +680,7 @@
   }
   RAF(tick);
 
-  /* ── GITHUB STARS (graceful fallback) ──
-     Replace OWNER/REPO with your actual GitHub repos.
-     The fetch is fire-and-forget; badge shows "–" if it fails.
-  */
+  /* ── GITHUB STARS ── */
   function fetchStars(repo, elId){
     fetch('https://api.github.com/repos/'+repo)
       .then(function(r){ return r.json(); })
@@ -649,9 +694,7 @@
       })
       .catch(function(){});
   }
-  /* TODO: replace with your actual repos */
-  /* fetchStars('your-username/cross-modal-retrieval', 'port-stars-1'); */
-  /* fetchStars('your-username/controllable-diffusion', 'port-stars-2'); */
+  fetchStars('HNg0303/VietFashion', 'port-stars-1');
 
 })();
 </script>
