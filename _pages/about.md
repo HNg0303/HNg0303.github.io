@@ -10,11 +10,11 @@ redirect_from:
 
 # About Me
 
-I am a third-year student of the APCS (Advanced Program In Computer Science) at University of Science, Vietnam National University Ho Chi Minh City. I am currently an Undergraduate Researcher under the direct supervision of [Dr. Trung-Nghia Le](https://ltnghia.github.io/).
+I am a third-year student of the APCS (Advanced Program In Computer Science) at University of Science, Vietnam National University Ho Chi Minh City. I am currently an Undergraduate Researcher under the direct supervision of [Dr. Trung-Nghia Le](https://ltnghia.github.io/). My experience spans both research and practical projects in Vision-Language Model, Agentic AI and Generative AI.
 
 My research focuses on VLMs in cross-modal retrieval and controllable image generation. 
 
-Feel free to reach out via [email](mailto:chnguyen032005@gmail.com) or [LinkedIn](www.linkedin.com/in/hoang-nguyen03) if you'd like to connect!
+Feel free to reach out via [email](mailto:chnguyen032005@gmail.com) or [LinkedIn](https://www.linkedin.com/in/hoang-nguyen03/) if you'd like to connect!
 
 ---
 
