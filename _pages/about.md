@@ -14,14 +14,10 @@ I am a third-year student of the APCS (Advanced Program In Computer Science) at 
 
 My research focuses on VLMs in cross-modal retrieval and controllable image generation. 
 
-Feel free to reach out via [email](mailto:chnguyen032005@gmail.com) or [LinkedIn](https://www.linkedin.com/in/hoang-nguyen-cao/) if you'd like to connect!
+Feel free to reach out via [email](mailto:chnguyen032005@gmail.com) or [LinkedIn](www.linkedin.com/in/hoang-nguyen03) if you'd like to connect!
 
 ---
 
 {% include portfolio-cards.html %}
 
 ---
-
-For more info
-------
-More info about configuring Academic Pages can be found in [the guide](https://academicpages.github.io/markdown/).
