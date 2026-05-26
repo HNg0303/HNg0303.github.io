@@ -19,3 +19,9 @@ Feel free to reach out via [email](mailto:chnguyen032005@gmail.com) or [LinkedIn
 ---
 
 {% include portfolio-cards.html %}
+
+---
+
+For more info
+------
+More info about configuring Academic Pages can be found in [the guide](https://academicpages.github.io/markdown/).
