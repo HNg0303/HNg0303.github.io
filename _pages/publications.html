@@ -6,92 +6,262 @@ author_profile: true
 ---
 
 {% if site.author.googlescholar %}
-  <div class="wordwrap">You can also find my articles on <a href="{{site.author.googlescholar}}">my Google Scholar profile</a>.</div>
+  <div class="wordwrap" style="margin-bottom: 2rem;">
+    You can also find my articles on <a href="{{site.author.googlescholar}}" style="color: var(--accent, #6366f1); text-decoration: none; font-weight: 500;">my Google Scholar profile →</a>
+  </div>
 {% endif %}
 
 {% include base_path %}
 
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+
 <style>
-.pub-list { display: flex; flex-direction: column; gap: 1.2rem; margin-top: 1.5rem; }
-.pub-item {
-  border: 0.5px solid var(--global-border-color, rgba(128,128,128,.2));
-  border-radius: 12px;
-  padding: 16px 18px;
-  background: var(--global-bg-color, var(--background-color, #fff));
-  transition: border-color .18s, transform .18s;
+/* ── ROOT & DARK MODE VARIABLES ── */
+.pub-page-wrap {
+  font-family: 'Outfit', sans-serif;
+  --accent: #6366f1;
+  --accent2: #a78bfa;
+  --card-bg: var(--background-color, #ffffff);
+  --card-border: rgba(128,128,128,.2);
+  --card-border-hover: rgba(128,128,128,.4);
+}
+
+@media (prefers-color-scheme: dark) {
+  .pub-page-wrap {
+    --card-bg: var(--background-color, #1a1a2e);
+  }
+}
+
+/* ── GRID & CARD STRUCTURE ── */
+.port-pub-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 16px;
+  margin-top: 1rem;
+}
+
+.port-pub-card {
+  background: var(--card-bg);
+  border: 0.5px solid var(--card-border);
+  border-radius: 14px;
+  overflow: hidden;
+  transition: border-color .2s, transform .2s;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  text-decoration: none;
+  color: inherit;
+}
+
+.port-pub-card:hover {
+  border-color: var(--card-border-hover);
+  transform: translateY(-4px);
+}
+
+.port-pub-card:hover .port-pub-thumb img {
+  transform: scale(1.04);
+}
+
+/* ── THUMBNAIL & OVERLAYS ── */
+.port-pub-thumb {
+  height: 140px;
   position: relative;
+  overflow: hidden;
+  flex-shrink: 0;
+  background: linear-gradient(135deg, var(--accent), var(--accent2));
 }
-.pub-item:hover { border-color: rgba(128,128,128,.4); transform: translateX(4px); }
-.pub-item::before {
-  content: '';
-  position: absolute; left: 0; top: 0; bottom: 0; width: 3px;
-  border-radius: 3px 0 0 3px;
-  background: linear-gradient(180deg, #6366f1, #a78bfa);
-  opacity: 0; transition: opacity .2s;
+
+.port-pub-thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform .4s ease;
 }
-.pub-item:hover::before { opacity: 1; }
-.pub-rank {
-  display: inline-block;
-  font-size: 10px; font-weight: 600; letter-spacing: .5px;
-  padding: 2px 9px; border-radius: 20px;
-  margin-bottom: 6px;
+
+.port-pub-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,.15);
+  transition: background .25s;
 }
-.pub-rank.b-rank { background: rgba(99,102,241,.12); color: #6366f1; border: .5px solid rgba(99,102,241,.3); }
-.pub-rank.scopus  { background: rgba(16,163,74,.12); color: #16a34a; border: .5px solid rgba(16,163,74,.3); }
-.pub-title { font-size: 15px; font-weight: 600; margin-bottom: 4px; line-height: 1.4; }
-.pub-title a { color: inherit; text-decoration: none; }
-.pub-title a:hover { color: #6366f1; }
-.pub-venue { font-size: 12px; opacity: .6; margin-bottom: 8px; }
-.pub-excerpt { font-size: 12px; opacity: .65; line-height: 1.5; margin-bottom: 10px; }
-.pub-links { display: flex; gap: 6px; flex-wrap: wrap; }
-.pub-link {
-  font-size: 11px; padding: 3px 11px; border-radius: 6px;
+
+.port-pub-card:hover .port-pub-overlay {
+  background: rgba(0,0,0,.05);
+}
+
+.port-pub-venue-badge {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: .4px;
+  text-transform: uppercase;
+  background: rgba(0,0,0,.65);
+  color: #fff;
+  padding: 4px 10px;
+  border-radius: 6px;
+  backdrop-filter: blur(6px);
+}
+
+.port-pub-year {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  font-family: 'DM Mono', monospace;
+  font-size: 11px;
+  padding: 3px 9px;
+  border-radius: 20px;
+  color: #fff;
+  background: rgba(99,102,241,.85);
+  backdrop-filter: blur(6px);
+}
+
+.port-pub-award {
+  position: absolute;
+  bottom: 10px;
+  left: 10px;
+  font-size: 10px;
+  font-weight: 600;
+  background: rgba(234, 179, 8, 0.9);
+  color: #fff;
+  padding: 4px 10px;
+  border-radius: 6px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+}
+
+/* ── TEXT & METADATA ── */
+.port-pub-body {
+  padding: 16px;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.port-pub-area {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: .5px;
+  text-transform: uppercase;
+  color: var(--accent);
+  opacity: 0.9;
+}
+
+.port-pub-title {
+  font-size: 15px;
+  font-weight: 600;
+  line-height: 1.4;
+  margin-bottom: 4px;
+}
+
+.port-pub-desc {
+  font-size: 13px;
+  opacity: .7;
+  line-height: 1.5;
+  flex: 1;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* ── FOOTER & LINKS ── */
+.port-pub-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 10px;
+  padding-top: 12px;
+  border-top: .5px solid rgba(128,128,128,.15);
+}
+
+.port-pub-tags {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+
+.port-pub-tag {
+  font-size: 11px;
+  padding: 4px 10px;
+  border-radius: 6px;
   border: .5px solid rgba(128,128,128,.25);
-  background: rgba(128,128,128,.06);
-  text-decoration: none; color: inherit; opacity: .8;
-  transition: opacity .15s, background .15s;
+  background: rgba(128,128,128,.05);
+  font-family: 'DM Mono', monospace;
+  text-decoration: none;
+  color: inherit;
+  transition: all .15s ease;
 }
-.pub-link:hover { opacity: 1; background: rgba(128,128,128,.12); }
+
+.port-pub-tag:hover {
+  background: var(--accent);
+  color: white;
+  border-color: var(--accent);
+}
+
+.port-pub-readtime {
+  font-family: 'DM Mono', monospace;
+  font-size: 11px;
+  color: var(--accent);
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  white-space: nowrap;
+}
 </style>
 
-<!-- New style rendering if publication categories are defined -->
-{% if site.publication_category %}
-  {% for category in site.publication_category %}
-    {% assign title_shown = false %}
+<div class="pub-page-wrap">
+  <div class="port-pub-grid">
     {% for post in site.publications reversed %}
-      {% if post.category != category[0] %}
-        {% continue %}
-      {% endif %}
-      {% unless title_shown %}
-        <h2>{{ category[1].title }}</h2><hr />
-        {% assign title_shown = true %}
-      {% endunless %}
-      {% include archive-single.html %}
+      <div class="port-pub-card" onclick="window.location='{{ post.url }}'">
+        
+        <div class="port-pub-thumb">
+          {% if post.teaser %}
+            <img src="{{ post.teaser }}" alt="Project Teaser">
+          {% endif %}
+          <div class="port-pub-overlay"></div>
+          
+          <div class="port-pub-venue-badge">
+            {{ post.venue | truncate: 20 }} {% if post.rank %}· {{ post.rank }}{% endif %}
+          </div>
+          
+          <div class="port-pub-year">
+            {{ post.date | date: "%Y" }}
+          </div>
+
+          {% if post.award %}
+            <div class="port-pub-award">🏆 {{ post.award }}</div>
+          {% endif %}
+        </div>
+
+        <div class="port-pub-body">
+          <div class="port-pub-area">{{ post.category | default: "Research" }}</div>
+          <div class="port-pub-title">{{ post.title }}</div>
+          <div class="port-pub-desc">{{ post.excerpt | strip_html }}</div>
+          
+          <div class="port-pub-footer">
+            <div class="port-pub-tags">
+              {% if post.paperurl %}
+                <a class="port-pub-tag" href="{{ post.paperurl }}" target="_blank" onclick="event.stopPropagation()">📄 Paper</a>
+              {% endif %}
+              {% if post.certurl %}
+                <a class="port-pub-tag" href="{{ post.certurl }}" target="_blank" onclick="event.stopPropagation()">🏆 Cert</a>
+              {% endif %}
+              {% if post.codeurl %}
+                <a class="port-pub-tag" href="{{ post.codeurl }}" target="_blank" onclick="event.stopPropagation()">💻 Code</a>
+              {% endif %}
+            </div>
+            <div class="port-pub-readtime">
+              Details →
+            </div>
+          </div>
+
+        </div>
+      </div>
     {% endfor %}
-  {% endfor %}
-{% else %}
-
-<div class="pub-list">
-  {% for post in site.publications reversed %}
-  <div class="pub-item">
-    {% if post.rank == "B-rank" %}
-      <span class="pub-rank b-rank">B-Rank · ACM ICMR</span>
-    {% elsif post.rank == "Scopus-indexed" %}
-      <span class="pub-rank scopus">Scopus · SoICT</span>
-    {% endif %}
-    <div class="pub-title"><a href="{{ post.url }}">{{ post.title }}</a></div>
-    <div class="pub-venue">{{ post.venue }} · {{ post.date | date: "%Y" }}</div>
-    {% if post.excerpt %}
-      <div class="pub-excerpt">{{ post.excerpt }}</div>
-    {% endif %}
-    <div class="pub-links">
-      {% if post.paperurl %}<a class="pub-link" href="{{ post.paperurl }}" target="_blank">📄 Paper</a>{% endif %}
-      {% if post.codeurl %}<a class="pub-link" href="{{ post.codeurl }}" target="_blank">💻 Code</a>{% endif %}
-      {% if post.projecturl %}<a class="pub-link" href="{{ post.projecturl }}" target="_blank">🌐 Project</a>{% endif %}
-      <a class="pub-link" href="{{ post.url }}">Details →</a>
-    </div>
   </div>
-  {% endfor %}
 </div>
-
-{% endif %}
