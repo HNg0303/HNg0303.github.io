@@ -242,6 +242,9 @@ author_profile: true
               {% if post.paperurl %}
                 <a class="port-pub-tag" href="{{ post.paperurl }}" target="_blank" onclick="event.stopPropagation()">📄 Paper</a>
               {% endif %}
+              {% if post.projecturl %}
+                <a class="port-pub-tag" href="{{ post.projecturl }}" target="_blank" onclick="event.stopPropagation()">🌐 Project</a>
+              {% endif %}
               {% if post.certurl %}
                 <a class="port-pub-tag" href="{{ post.certurl }}" target="_blank" onclick="event.stopPropagation()">🏆 Cert</a>
               {% endif %}
