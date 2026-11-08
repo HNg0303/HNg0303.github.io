@@ -1,0 +1,15 @@
+{% assign p = include.project %}
+<article class="rp-card">
+  <div class="rp-card-head">
+    <div class="rp-card-title"><a href="{{ base_path }}{{ p.url }}">{{ p.title }}</a></div>
+    {% if p.status == "Active" %}<span class="rp-badge active"><span class="rp-badge-dot"></span>Active</span>{% elsif p.status %}<span class="rp-badge">{{ p.status }}</span>{% endif %}
+  </div>
+  <div class="rp-card-date">{{ p.date | date: "%b %Y" }}</div>
+  <div class="rp-card-desc">{{ p.excerpt | strip_html | truncate: 200 }}</div>
+  {% if p.tags %}<div class="rp-chips">{% for t in p.tags limit: 5 %}<span class="rp-chip">{{ t }}</span>{% endfor %}</div>{% endif %}
+  <div class="rp-links">
+    {% if p.codeurl %}<a class="rp-link" href="{{ p.codeurl }}" target="_blank" rel="noopener">Code</a>{% endif %}
+    {% if p.projecturl %}<a class="rp-link" href="{{ p.projecturl }}" target="_blank" rel="noopener">Project</a>{% endif %}
+    <a class="rp-link" href="{{ base_path }}{{ p.url }}">Details</a>
+  </div>
+</article>

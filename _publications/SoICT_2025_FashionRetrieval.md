@@ -4,14 +4,16 @@ collection: publications
 permalink: /publications/ExploringFashionRetrieval/
 date: 2025-12-13
 venue: "Symposium on Information and Communication Technology (SoICT) 2025"
+short_venue: "SoICT 2025"
+selected: true
 rank: Scopus-indexed
-category: Conference Papers
+category: Conference Paper
 award: "Best Poster Award"
 excerpt: "We investigate multi-modal large language models with a two-stage fine-tuning strategy for robust fashion image retrieval, demonstrating strong performance across standard benchmarks."
 teaser: /images/publications/SoICT_teaser.png
 
-paperurl: "files/SoICT.pdf"
-certurl: "files/SoICT_Cert.pdf"
+paperurl: "/publications/files/SoICT.pdf"
+certurl: "/publications/files/SoICT_Cert.pdf"
 tags:
   - MLLM
   - Fashion Retrieval

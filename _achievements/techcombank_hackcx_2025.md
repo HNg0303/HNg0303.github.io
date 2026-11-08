@@ -4,7 +4,7 @@ collection: achievements
 permalink: /achievements/techcombank-hackcx-2025/
 date: 2025-06-01
 excerpt: "Placed in the Top 24 out of 200 teams at Techcombank HackCX-Together 2025, building an AI-powered banking assistant for enhanced customer experience."
-teaser: /images/achievements/hackcx-2025.jpg
+teaser: /images/achievements/techcombank_team.png
 
 award: "Finalist · Top 24 / 200"
 event: "Techcombank HackCX-Together 2025"
@@ -36,6 +36,6 @@ Our team built an **AI Banking Assistant** designed to enhance customer experien
 ## Result
 
 🥈 **Finalist — Top 24 out of 200 teams**
-<img src="/images\achievements\techcombank_cert.png" alt="Overall Pipeline" width="1000"/>
+<img src="/images/achievements/techcombank_cert.png" alt="Overall Pipeline" width="1000"/>
 
 The solution was selected among the top teams for its practical applicability and robust AI architecture in a regulated financial context.

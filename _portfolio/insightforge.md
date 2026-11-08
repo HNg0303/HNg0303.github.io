@@ -14,6 +14,12 @@ tags:
   - Multi-Agent
   - LLM
   - Python
+date_range: "Mar 2026 – Present"
+highlights:
+  - "Designed a multi-agent system using Stateful LangGraph and MCP servers to automate trend discovery, script generation, and cross-platform publishing."
+  - "Reduced creator workflow time by **40%**."
+  - "Standardized inter-agent communication with the A2A Protocol for seamless state and data exchange."
+  - "Integrated Gemini, GPT-4o, and Claude with structured output validation for type-safe downstream workflows."
 ---
 
 ## Overview

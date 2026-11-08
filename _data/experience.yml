@@ -1,0 +1,37 @@
+# Experience shown on the home page and the CV page.
+# type: research | industry  (research entries are listed first)
+# end: leave empty for a current position
+
+- type: research
+  role: "Research Collaborator"
+  org: "Monash University"
+  org_url: "https://www.monash.edu/"
+  advisor: "Dr. Thanh-Toan Do"
+  advisor_url: "https://research.monash.edu/en/persons/toan-do/"
+  location: "Remote"
+  start: "Sep 2026"
+  end:
+  desc: "Research collaboration with Dr. Thanh-Toan Do on multimodal and generative AI."
+  skills: [Computer Vision, Generative AI, Multimodal Learning]
+
+- type: research
+  role: "Research Assistant"
+  org: "SeLAB · University of Science, VNU-HCM"
+  org_url:
+  advisor: "Dr. Trung-Nghia Le"
+  advisor_url: "https://ltnghia.github.io/"
+  location: "Ho Chi Minh City, Vietnam"
+  start: "Oct 2025"
+  end:
+  desc: "Vision-language models for cross-modal retrieval and training-free controllable image generation. Led the full research cycle (dataset curation, model fine-tuning, benchmark design and writing) behind three peer-reviewed papers at ACM ICMR 2026, SoICT 2026 and SoICT 2025 (Best Poster Award)."
+  skills: [VLMs, Composed Image Retrieval, Visual Autoregressive Models, PyTorch]
+
+- type: industry
+  role: "AI Engineer"
+  org: "FPT Telecom"
+  org_url: "https://fpt.vn/"
+  location: "Ho Chi Minh City, Vietnam"
+  start: "Jul 2026"
+  end:
+  desc: "Building and deploying machine-learning systems for production use."
+  skills: [Machine Learning, LLMs, MLOps, Python]

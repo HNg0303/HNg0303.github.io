@@ -1,0 +1,9 @@
+{% assign a = include.item %}
+<div class="rp-honor">
+  <div class="rp-honor-icon">🏆</div>
+  <div class="rp-honor-body">
+    <div class="rp-honor-title"><a href="{{ base_path }}{{ a.url }}">{{ a.event | default: a.title }}</a></div>
+    <div class="rp-honor-meta">{% if a.track %}{{ a.track }} · {% endif %}{% if a.location %}{{ a.location }} · {% endif %}{{ a.date_display | default: a.date | date: "%b %Y" }}</div>
+  </div>
+  {% if a.award %}<span class="rp-badge gold">{{ a.award }}</span>{% endif %}
+</div>

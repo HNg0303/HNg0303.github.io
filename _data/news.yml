@@ -1,0 +1,14 @@
+# Short research updates shown on the home page (newest first).
+# "text" accepts Markdown.
+- date: "Nov 2026"
+  text: "**CoPFB**, a training-free style personalization method for visual autoregressive models, accepted at **SoICT 2026**. [[arXiv]](https://arxiv.org/abs/2611.00683)"
+- date: "Sep 2026"
+  text: "Started a research collaboration with **Dr. Thanh-Toan Do** at **Monash University**."
+- date: "Jul 2026"
+  text: "Joined **FPT Telecom** as an AI Engineer."
+- date: "Apr 2026"
+  text: "**VietFashion**, our sketch–text composed image retrieval benchmark, published at **ACM ICMR 2026**."
+- date: "Dec 2025"
+  text: "Received the **Best Poster Award** at **SoICT 2025**."
+- date: "Oct 2025"
+  text: "Joined **SeLAB** as a Research Assistant under **Dr. Trung-Nghia Le**."

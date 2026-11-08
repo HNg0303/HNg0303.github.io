@@ -4,7 +4,7 @@ collection: achievements
 permalink: /achievements/gdgoc-hackathon-2026/
 date: 2026-04-01
 excerpt: "Placed in the Top 2 out of 300 teams at GDGoC Hackathon Vietnam 2026 in the AI Content Architecture track, building InsightForge — a multi-agent content automation system."
-teaser: /images/achievements/gdgoc-2026.jpg
+teaser: /images/achievements/gdgoc.png
 
 award: "Finalist · Top 2 / 300"
 event: "GDGoC Hackathon Vietnam 2026"

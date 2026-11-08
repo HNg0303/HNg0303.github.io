@@ -1,0 +1,22 @@
+{% comment %}Experience timeline. include.type = research | industry{% endcomment %}
+{% assign items = site.data.experience | where: "type", include.type %}
+<div class="rp-exp">
+  {% for e in items %}
+  <div class="rp-exp-card">
+    <div>
+      <div class="rp-exp-role">{{ e.role }}</div>
+      <div class="rp-exp-org">
+        {% if e.org_url %}<a href="{{ e.org_url }}" target="_blank" rel="noopener">{{ e.org }}</a>{% else %}{{ e.org }}{% endif %}{% if e.advisor %} · with {% if e.advisor_url %}<a href="{{ e.advisor_url }}" target="_blank" rel="noopener">{{ e.advisor }}</a>{% else %}{{ e.advisor }}{% endif %}{% endif %}
+      </div>
+    </div>
+    <div class="rp-exp-right">
+      <div class="rp-exp-date">{{ e.start }} – {{ e.end | default: "Present" }}</div>
+      {% unless e.end %}<span class="rp-badge active"><span class="rp-badge-dot"></span>Current</span>{% endunless %}
+    </div>
+    {% if e.desc %}<div class="rp-exp-desc">{{ e.desc }}</div>{% endif %}
+    {% if e.skills %}
+    <div class="rp-chips">{% for s in e.skills %}<span class="rp-chip">{{ s }}</span>{% endfor %}</div>
+    {% endif %}
+  </div>
+  {% endfor %}
+</div>

@@ -15,10 +15,10 @@ redirect_from:
 
 <style>
   :root {
-    --accent: #6366f1;
-    --accent-soft: rgba(99, 102, 241, 0.08);
-    --border: rgba(120, 120, 120, 0.15);
-    --text-soft: #6b7280;
+    --accent: var(--rp-accent);
+    --accent-soft: var(--rp-accent-soft);
+    --border: var(--rp-border);
+    --text-soft: var(--rp-muted);
   }
 
   .cv-page {
@@ -77,7 +77,7 @@ redirect_from:
     padding: 1.2rem 1.3rem;
     margin-bottom: 1rem;
     transition: all 0.2s ease;
-    background: rgba(255,255,255,0.02);
+    background: var(--rp-surface);
   }
 
   .cv-card:hover {
@@ -133,7 +133,7 @@ redirect_from:
   }
 
   .cv-skill-card {
-    background: var(--background-color, #ffffff);
+    background: var(--rp-surface);
     border: 0.5px solid rgba(128, 128, 128, 0.2);
     border-radius: 14px;
     padding: 16px 18px;
@@ -204,30 +204,21 @@ redirect_from:
     background: rgba(128, 128, 128, 0.12);
   }
 
-  @media (prefers-color-scheme: dark) {
-    .cv-skill-card {
-      background: #171717;
-    }
-
-    .cv-card {
-      background: rgba(255,255,255,0.02);
-    }
-
-    .cv-skill-tag {
-      background: rgba(255, 255, 255, 0.04);
-      border-color: rgba(255, 255, 255, 0.1);
-    }
-  }
+  .cv-pub { margin-bottom: 0.9rem; }
+  .cv-pub-title { font-weight: 600; }
+  .cv-pub-title a { color: inherit; }
+  .cv-pub-meta { font-size: 0.92rem; color: var(--text-soft); }
+  .cv-pub-meta strong { color: var(--global-text-color); }
 </style>
 
 <div class="cv-page">
 
 <div class="cv-hero">
-  <h1>AI Engineer / Research-Oriented CS Student</h1>
+  <h1>Hoang-Nguyen Cao</h1>
   <p>
-    Junior (3rd Year) Computer Science student focused on AI systems, agentic workflows,
-    RAG pipelines, and Generative AI. Passionate about building
-    production-ready intelligent systems and conducting applied AI research.
+    Undergraduate AI researcher working on vision-language models, cross-modal retrieval
+    and controllable image generation. Research Assistant at SeLAB (VNU-HCM University of Science),
+    research collaborator at Monash University, and AI Engineer at FPT Telecom.
   </p>
 </div>
 
@@ -258,138 +249,76 @@ redirect_from:
 </div>
 
 <div class="cv-section">
-  <div class="cv-section-title">💼 Experience</div>
-
+  <div class="cv-section-title">🔬 Research Experience</div>
+  {% assign items = site.data.experience | where: "type", "research" %}
+  {% for e in items %}
   <div class="cv-card">
     <div class="cv-card-header">
-      <div class="cv-role">
-        Undergraduate Research Assistant
-      </div>
-      <div class="cv-date">Oct 2025 – Present</div>
+      <div class="cv-role">{{ e.role }}</div>
+      <div class="cv-date">{{ e.start }} – {{ e.end | default: "Present" }}</div>
     </div>
-
-    <div class="cv-org">
-      Ho Chi Minh University of Science, VNUHCM
-    </div>
-
-    <ul>
-      <li>
-        Research in Vision-Language Models (VLMs),
-        cross-modal retrieval, and Generative AI under PhD supervision.
-      </li>
-
-      <li>
-        Co-authored first-author paper accepted at
-        ACM ICMR 2026 (Amsterdam).
-      </li>
-
-      <li>
-        Executed the full research pipeline including
-        dataset curation, model fine-tuning,
-        benchmark design, and manuscript review.
-      </li>
-    </ul>
+    <div class="cv-org">{{ e.org }}{% if e.advisor %} · Advisor: {{ e.advisor }}{% endif %}</div>
+    {% if e.desc %}<ul><li>{{ e.desc }}</li></ul>{% endif %}
   </div>
-</div>
-
-<div class="cv-section">
-  <div class="cv-section-title">🚀 Projects</div>
-
-  <div class="cv-card">
-    <div class="cv-card-header">
-      <div class="cv-role">
-        INSIGHTFORGE — Agentic Assistant for Content Creators
-      </div>
-      <div class="cv-date">Mar 2026 – Present</div>
-    </div>
-
-    <ul>
-      <li>
-        Designed a multi-agent system using Stateful LangGraph and MCP servers
-        to automate trend discovery, script generation,
-        and cross-platform publishing.
-      </li>
-
-      <li>
-        Reduced creator workflow time by
-        <span class="cv-highlight">40%</span>.
-      </li>
-
-      <li>
-        Standardized inter-agent communication using
-        A2A Protocol for seamless state and data exchange.
-      </li>
-
-      <li>
-        Integrated Gemini, GPT-4o, and Claude with structured output validation
-        for type-safe downstream workflows.
-      </li>
-    </ul>
-  </div>
-
-  <div class="cv-card">
-    <div class="cv-card-header">
-      <div class="cv-role">
-        RAGNEWS — Agentic LLM-Powered News Platform
-      </div>
-      <div class="cv-date">Jan 2026 – Mar 2026</div>
-    </div>
-
-    <ul>
-      <li>
-        Built an asynchronous agentic RAG pipeline using
-        FastAPI and LangChain with autonomous routing tools.
-      </li>
-
-      <li>
-        Implemented a two-stage retrieval architecture using
-        Milvus and BGE-Reranker for lower latency retrieval.
-      </li>
-
-      <li>
-        Fine-tuned Qwen2.5-1.5B via LoRA and Unsloth
-        for domain-specific summarization tasks.
-      </li>
-
-      <li>
-        Reduced training memory footprint by
-        <span class="cv-highlight">60%</span>.
-      </li>
-
-      <li>
-        Deployed inference using vLLM with PostgreSQL persistence
-        and a Streamlit interface for interactive sessions.
-      </li>
-    </ul>
-  </div>
-</div>
-
-<div class="cv-section">
-  <div class="cv-section-title">🏆 Achievements</div>
-
-  <div class="cv-card">
-    <ul>
-      <li>
-        Finalist — Top 2/300 GDGoC Hackathon Vietnam 2026
-        (AI Content Architecture), Hanoi
-      </li>
-
-      <li>
-        Finalist — Top 24/200 Techcombank HackCX-Together 2025
-        (AI Banking Assistant), Hanoi
-      </li>
-    </ul>
-  </div>
+  {% endfor %}
 </div>
 
 <div class="cv-section">
   <div class="cv-section-title">📚 Publications</div>
+  {% assign pubs = site.publications | sort: "date" | reverse %}
+  {% for pub in pubs %}
+  <div class="cv-pub">
+    <div class="cv-pub-title"><a href="{{ base_path }}{{ pub.url }}">{{ pub.title }}</a></div>
+    <div class="cv-pub-meta">
+      {% if pub.authors %}{{ pub.authors | replace: site.author.name, "<strong>SELF_NAME</strong>" | replace: "SELF_NAME", site.author.name }}.<br>{% endif %}
+      <em>{{ pub.venue }}</em>{% if pub.award %} · 🏆 {{ pub.award }}{% endif %}
+    </div>
+  </div>
+  {% endfor %}
+</div>
 
-  <ul>
-    {% for post in site.publications reversed %}
-      {% include archive-single-cv.html %}
-    {% endfor %}
-  </ul>
+<div class="cv-section">
+  <div class="cv-section-title">💼 Industry Experience</div>
+  {% assign items = site.data.experience | where: "type", "industry" %}
+  {% for e in items %}
+  <div class="cv-card">
+    <div class="cv-card-header">
+      <div class="cv-role">{{ e.role }}</div>
+      <div class="cv-date">{{ e.start }} – {{ e.end | default: "Present" }}</div>
+    </div>
+    <div class="cv-org">{{ e.org }}</div>
+    {% if e.desc %}<ul><li>{{ e.desc }}</li></ul>{% endif %}
+  </div>
+  {% endfor %}
+</div>
+
+<div class="cv-section">
+  <div class="cv-section-title">🚀 Projects</div>
+  {% assign projects = site.portfolio | sort: "date" | reverse %}
+  {% for p in projects %}
+  <div class="cv-card">
+    <div class="cv-card-header">
+      <div class="cv-role"><a href="{{ base_path }}{{ p.url }}" style="color:inherit">{{ p.title }}</a></div>
+      <div class="cv-date">{{ p.date_range | default: p.date | date: "%b %Y" }}</div>
+    </div>
+    <ul>
+      {% if p.highlights %}{% for h in p.highlights %}<li>{{ h | markdownify | remove: "<p>" | remove: "</p>" | strip }}</li>{% endfor %}
+      {% else %}<li>{{ p.excerpt | strip_html }}</li>{% endif %}
+    </ul>
+  </div>
+  {% endfor %}
+</div>
+
+<div class="cv-section">
+  <div class="cv-section-title">🏆 Honors &amp; Awards</div>
+  {% assign pubs = site.publications | sort: "date" | reverse %}
+  {% assign honors = site.achievements | sort: "date" | reverse %}
+  <div class="cv-card">
+    <ul>
+      {% for pub in pubs %}{% if pub.award %}<li>{{ pub.award }} — {{ pub.short_venue | default: pub.venue }} ({{ pub.date | date: "%b %Y" }})</li>{% endif %}{% endfor %}
+      {% for a in honors %}<li>{{ a.award }} — {{ a.event }}{% if a.track %} ({{ a.track }}){% endif %}{% if a.location %}, {{ a.location }}{% endif %}</li>{% endfor %}
+    </ul>
+  </div>
 </div>
 
 <div class="cv-section">

@@ -4,6 +4,9 @@ collection: publications
 permalink: /publications/VietFashion/
 date: 2026-04-25
 venue: "ACM International Conference on Multimedia Retrieval (ICMR) 2026"
+short_venue: "ACM ICMR 2026"
+authors: "Hoang-Nguyen Cao, Le-Hoang Bui, Dinh-Khoi Vo, Minh-Triet Tran, Trung-Nghia Le"
+selected: true
 rank: B-rank
 category: Conference Paper
 excerpt: "We introduce VietFashion, the first benchmark for sketch–text composed image retrieval targeting culturally-specific Vietnamese traditional outfits, enabling fine-grained cross-modal retrieval via domain-adapted encoder fine-tuning."
@@ -11,6 +14,7 @@ teaser: /images/publications/ICMR_teaser.png
 
 paperurl: "https://doi.org/10.1145/3805622.3810590"
 codeurl: "https://github.com/HNg0303/VietFashion"
+projecturl: "https://hng0303.github.io/VietFashion/"
 ---
 
 ## Overview

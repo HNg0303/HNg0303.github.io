@@ -17,6 +17,11 @@ tags:
   - Python
   - Kotlin
   - Swift
+date_range: "Oct 2026 – Present"
+highlights:
+  - "Clusters 250M+ unlabeled mobile clickstream events into named user journeys mapped to ~500 business intents."
+  - "Built the Kafka sink connector and a daily Airflow job; PyArrow and DuckDB keep memory bounded."
+  - "ML pipeline with TF-IDF/SVD and behavioural embeddings, HDBSCAN archetypes, per-cluster Markov anomaly scoring and drift-triggered retraining."
 ---
 
 **[Open the interactive project page →](https://hng0303.github.io/Unsupervised-Journey-Clustering/)**

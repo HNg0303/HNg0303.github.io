@@ -5,7 +5,7 @@ permalink: /portfolio/ragnews/
 date: 2026-01-01
 status: "Completed"
 excerpt: "An asynchronous, agentic RAG pipeline for news retrieval and summarization, featuring two-stage retrieval with Milvus + BGE-Reranker and a fine-tuned Qwen2.5-1.5B served via vLLM."
-teaser: /images/projects/RAGNews_HomePage.png
+teaser: /images/projects/RAGNews_HomePage.PNG
 
 codeurl: "https://github.com/HNg0303/RAGNews"
 tags:
@@ -17,6 +17,12 @@ tags:
   - FastAPI
   - PostgreSQL
   - Docker
+date_range: "Jan 2026 – Mar 2026"
+highlights:
+  - "Built an asynchronous agentic RAG pipeline using FastAPI and LangChain with autonomous routing tools."
+  - "Implemented two-stage retrieval with Milvus and BGE-Reranker for lower-latency retrieval."
+  - "Fine-tuned Qwen2.5-1.5B via LoRA and Unsloth for domain-specific summarization, reducing training memory by **60%**."
+  - "Deployed inference with vLLM, PostgreSQL persistence and a Streamlit interface."
 ---
 
 ## Overview
