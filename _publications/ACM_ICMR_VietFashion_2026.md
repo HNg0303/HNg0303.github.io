@@ -5,7 +5,7 @@ permalink: /publications/VietFashion/
 date: 2026-04-25
 venue: "ACM International Conference on Multimedia Retrieval (ICMR) 2026"
 short_venue: "ACM ICMR 2026"
-authors: "Hoang-Nguyen Cao, Le-Hoang Bui, Dinh-Khoi Vo, Minh-Triet Tran, Trung-Nghia Le"
+authors: "Hoang-Nguyen Cao*, Le-Hoang Bui*, Dinh-Khoi Vo, Minh-Triet Tran, Trung-Nghia Le"
 selected: true
 rank: B-rank
 category: Conference Paper

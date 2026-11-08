@@ -270,7 +270,7 @@ redirect_from:
   <div class="cv-pub">
     <div class="cv-pub-title"><a href="{{ base_path }}{{ pub.url }}">{{ pub.title }}</a></div>
     <div class="cv-pub-meta">
-      {% if pub.authors %}{{ pub.authors | replace: site.author.name, "<strong>SELF_NAME</strong>" | replace: "SELF_NAME", site.author.name }}.<br>{% endif %}
+      {% if pub.authors %}{{ pub.authors | replace: site.author.name, "<strong>SELF_NAME</strong>" | replace: "SELF_NAME", site.author.name }}.{% if pub.authors contains "*" %} <small>(* equal contribution)</small>{% endif %}<br>{% endif %}
       <em>{{ pub.venue }}</em>{% if pub.award %} · 🏆 {{ pub.award }}{% endif %}
     </div>
   </div>

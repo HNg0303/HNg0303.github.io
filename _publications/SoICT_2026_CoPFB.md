@@ -5,7 +5,7 @@ permalink: /publications/CoPFB/
 date: 2026-11-02
 venue: "Symposium on Information and Communication Technology (SoICT) 2026"
 short_venue: "SoICT 2026"
-authors: "Le-Hoang Bui, Hoang-Nguyen Cao, Trung-Nghia Le, Minh-Triet Tran, Dinh-Khoi Vo"
+authors: "Le-Hoang Bui*, Hoang-Nguyen Cao*, Trung-Nghia Le, Minh-Triet Tran, Dinh-Khoi Vo"
 selected: true
 rank: Scopus-indexed
 category: Conference Paper

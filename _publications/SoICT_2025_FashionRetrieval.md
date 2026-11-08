@@ -5,6 +5,7 @@ permalink: /publications/ExploringFashionRetrieval/
 date: 2025-12-13
 venue: "Symposium on Information and Communication Technology (SoICT) 2025"
 short_venue: "SoICT 2025"
+authors: "Hoang-Nguyen Cao*, Le-Hoang Bui*, Hoang-Nam Vo*, Trung-Nghia Le"
 selected: true
 rank: Scopus-indexed
 category: Conference Paper
@@ -12,7 +13,7 @@ award: "Best Poster Award"
 excerpt: "We investigate multi-modal large language models with a two-stage fine-tuning strategy for robust fashion image retrieval, demonstrating strong performance across standard benchmarks."
 teaser: /images/publications/SoICT_teaser.png
 
-paperurl: "/publications/files/SoICT.pdf"
+paperurl: "https://link.springer.com/chapter/10.1007/978-981-92-2600-9_19"
 certurl: "/publications/files/SoICT_Cert.pdf"
 tags:
   - MLLM

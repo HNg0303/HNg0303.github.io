@@ -226,6 +226,7 @@ html[data-theme="dark"] .rp-link:hover { color: #111827 !important; }
 .rp-pub-title a:hover { color: var(--rp-accent) !important; }
 .rp-pub-authors { font-size: 0.82rem; color: var(--rp-muted); line-height: 1.45; }
 .rp-pub-authors strong { color: var(--rp-text); font-weight: 600; text-decoration: underline; text-underline-offset: 2px; }
+.rp-pub-equal { font-size: 0.75rem; font-style: italic; opacity: 0.85; }
 .rp-pub-venue { font-size: 0.82rem; font-style: italic; color: var(--rp-text); }
 .rp-pub-meta { display: flex; flex-wrap: wrap; align-items: center; gap: 6px; margin: 2px 0; }
 .rp-pub-desc { font-size: 0.82rem; color: var(--rp-muted); line-height: 1.55; margin: 2px 0 6px; }

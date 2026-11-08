@@ -13,7 +13,7 @@
   <div class="rp-pub-body">
     <div class="rp-pub-title"><a href="{{ base_path }}{{ pub.url }}">{{ pub.title }}</a></div>
     {% if pub.authors %}
-      <div class="rp-pub-authors">{{ pub.authors | replace: self_name, "<strong>SELF_NAME</strong>" | replace: "SELF_NAME", self_name }}</div>
+      <div class="rp-pub-authors">{{ pub.authors | replace: self_name, "<strong>SELF_NAME</strong>" | replace: "SELF_NAME", self_name }}{% if pub.authors contains "*" %} <span class="rp-pub-equal">(* equal contribution)</span>{% endif %}</div>
     {% endif %}
     <div class="rp-pub-venue">{{ pub.venue }}</div>
     <div class="rp-pub-meta">
